@@ -11,18 +11,20 @@ monogatari.storage ({
 		mp: 100,
 		inventory: {
 			knowledge: 0,
+			unknownKnowledge: 9,
 
 		},
 	},
-	silkwormPoints: false,
-	videoPoints: false,
-	exhibitPoints: false,
-	museumPoints: false,
-	guidePoints: false,
-	storagePoints: false,
-	factoryPoints: false,
-	housePoints: false,
-	outsidePoints: false,
-	gAnddPoints: false,
+
+	microscopePoint: false,
+	shibusawaPoint: false,
+	berryPoint: false,
+	medalPoint: false,
+	buheiPoint: false,
+	bessoPoint: false,
+	storagePoint: false,
+	riverPoint: false,
+	housePoint: false,
+	farmPoint: false,
 
 });

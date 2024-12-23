@@ -11451,6 +11451,11 @@ choice-container {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	position: absolute;
+	
+	grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 1em; /* Space between buttons */
+    justify-items: center; /* Center buttons horizontally */
+    align-items: center; /* Center buttons vertically */
 }
 [mode="nvl"] choice-container {
 	position: static;
