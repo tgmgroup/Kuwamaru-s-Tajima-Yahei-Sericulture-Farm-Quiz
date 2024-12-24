@@ -639,11 +639,7 @@ monogatari.script({
 	// The game starts here.
 	Start: [
 		"clear",
-		"play music mainTheme with volume 30 loop",
-		"show scene black with fadeIn",
 
-		"show particles universe",
-		"hide particles",
 		{
 			Function: {
 				Apply: function () {
@@ -660,16 +656,19 @@ monogatari.script({
 				},
 			},
 		},
+
 		"show particles universe",
+
+		"play music mainTheme with volume 30 loop",
+		"show scene black with fadeIn",
+
 		"show scene s0 with fadeIn",
 		//'show notification Welcome',
-
-		"hide particles",
 
 		"k:reading Hi! Welcome to our quiz!",
 		"k:reading Today, we're going to quiz you about the Tajima Yahei Sericulture Farm.",
 		"k:reading There are just 10 questions.",
-
+		"hide particles",
 		"jump Quiz-Start",
 	],
 
@@ -1994,6 +1993,8 @@ monogatari.script({
 			},
 		},
 
+		"hide particles",
+		"stop music thinkingTheme",
 		// Check progress
 		{
 			Conditional: {
