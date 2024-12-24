@@ -15,7 +15,7 @@ You can read our online magazine here: [Online Magazine](https://impress-fall-20
 We used a lot of materials in this game!
 
 - Photos were taken by George Liu. 
-- A big thank you to the staff at the Tajima Yahei Sericulture Farm, the Visitor Center, and the [Isesaki Cultural Protection Division](https://www.city.isesaki.lg.jp/soshiki/kyoikubu/hogo/bunkazaihogo/shitei/shiseki/2721.html), including Ms. Muraoka and Mr. Kuribara.
+- A big thank you to the staff at the Tajima Yahei Sericulture Farm, the Visitor Center, and the [Isesaki Cultural Protection Division](https://www.city.isesaki.lg.jp/soshiki/kyoikubu/hogo/bunkazaihogo/shitei/shiseki/2721.html), including Ms. Muraoka and Mr. Kuribara. *Kuwamaru* images are from the city of Isesaki.
 - The base game is written on [Monogatari](https://monogatari.io/), which is licensed under the MIT license. The [source code](https://github.com/Monogatari/Monogatari) is on GitHub, too.
 - Music and sound effects from various creators on [Pixabay](https://pixabay.com/)
     - Sound Effect by [Lazy Chill Zone](https://pixabay.com/users/lazychillzone-40482846/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=228358) from [Pixabay](https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=228358)
