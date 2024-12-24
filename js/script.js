@@ -659,10 +659,10 @@ monogatari.script({
 
 		"show particles universe",
 
-		"play music mainTheme with volume 30 loop",
+		"play music mainTheme with volume 50 loop",
 		"show scene black with fadeIn",
 
-		"show scene s0 with fadeIn",
+		"show scene q0 with fadeIn",
 		//'show notification Welcome',
 
 		"k:reading Hi! Welcome to our quiz!",
@@ -718,7 +718,7 @@ monogatari.script({
 				},
 				Repeat: {
 					Text: "Could you say that again?",
-					Do: "jump Quiz-Start",
+					Do: "jump Start",
 				},
 			},
 		},
@@ -726,7 +726,7 @@ monogatari.script({
 
 	Quiz1: [
 		"stop music mainTheme with fade 2",
-		"play music quiz1Theme with volume 30 fade 0 loop",
+		"play music quiz1Theme with volume 50 fade 0 loop",
 		"show scene q1 with fadeIn",
 		"k:normal OK, time for question one.",
 		"play music drumRoll with volume 10 fade 0 loop",
@@ -755,8 +755,8 @@ monogatari.script({
 
 	"Quiz1-Right": [
 		"stop music drumRoll",
-		"play sound drumRollEnd with volume 15",
-		"play sound rightAnswer with volume 30",
+		"play sound drumRollEnd with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q1 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:silkworm Tajima Yahei learned about silkworms in Italy.",
@@ -805,7 +805,7 @@ monogatari.script({
 
 	"Quiz1-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q1 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -832,7 +832,7 @@ monogatari.script({
 
 	Quiz2: [
 		"stop music quiz1Theme with fade 2",
-		"play music quiz2Theme with volume 30 fade 0 loop",
+		"play music quiz2Theme with volume 50 fade 0 loop",
 		"show scene q2 with fadeIn",
 		"k:normal OK, time for question two.",
 		"play music drumRoll with volume 10 fade 0 loop",
@@ -862,7 +862,7 @@ monogatari.script({
 
 	"Quiz2-Right": [
 		"stop music drumRoll",
-		"play sound rightAnswer with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q2 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:normal Shibusawa Eiichi's cousin Shige was the wife of Tajima Buhei, who is from the same Tajima family as Tajima Yahei.",
@@ -911,7 +911,7 @@ monogatari.script({
 
 	"Quiz2-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q2 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -938,7 +938,7 @@ monogatari.script({
 
 	Quiz3: [
 		"stop music quiz2Theme with fade 2",
-		"play music quiz1Theme with volume 30 fade 0 loop",
+		"play music quiz1Theme with volume 50 fade 0 loop",
 		"show scene q3 with fadeIn",
 		"k:normal OK, time for question three.",
 		"play music drumRoll with volume 10 fade 0 loop",
@@ -968,8 +968,8 @@ monogatari.script({
 
 	"Quiz3-Right": [
 		"stop music drumRoll",
-		"play sound drumRollEnd with volume 15",
-		"play sound rightAnswer with volume 30",
+		"play sound drumRollEnd with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q3 with fadeIn",
 		"k:silkworm That's right! Good job!",
 		"k:silkworm Silkworms love to eat mulberry leaves.",
@@ -1019,7 +1019,7 @@ monogatari.script({
 
 	"Quiz3-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q3 with fadeIn",
 		"k:silkworm Sorry, that's not right!",
 
@@ -1046,7 +1046,7 @@ monogatari.script({
 
 	Quiz4: [
 		"stop music quiz1Theme with fade 2",
-		"play music quiz2Theme with volume 30 fade 0 loop",
+		"play music quiz2Theme with volume 50 fade 0 loop",
 		"show scene q4 with fadeIn",
 		"k:normal OK, time for question four.",
 		"play music drumRoll with volume 10 fade 0 loop",
@@ -1078,7 +1078,7 @@ monogatari.script({
 
 	"Quiz4-Right": [
 		"stop music drumRoll",
-		"play sound rightAnswer with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q4 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:normal If you look at the medals, they say 'Paris' on them.",
@@ -1126,7 +1126,7 @@ monogatari.script({
 
 	"Quiz4-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q4 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -1153,7 +1153,7 @@ monogatari.script({
 
 	Quiz5: [
 		"stop music quiz2Theme with fade 2",
-		"play music quiz1Theme with volume 30 fade 0 loop",
+		"play music quiz1Theme with volume 50 fade 0 loop",
 		"show scene q5 with fadeIn",
 		"k:normal OK, time for question five.",
 		"play music drumRoll with volume 10 fade 0 loop",
@@ -1183,8 +1183,8 @@ monogatari.script({
 
 	"Quiz5-Right": [
 		"stop music drumRoll",
-		"play sound drumRollEnd with volume 15",
-		"play sound rightAnswer with volume 30",
+		"play sound drumRollEnd with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q5 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:normal Tajima Buhei's house is called the <i>Somakan</i>.",
@@ -1233,7 +1233,7 @@ monogatari.script({
 
 	"Quiz5-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q5 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -1260,7 +1260,7 @@ monogatari.script({
 
 	Quiz6: [
 		"stop music quiz1Theme with fade 2",
-		"play music quiz2Theme with volume 30 fade 0 loop",
+		"play music quiz2Theme with volume 50 fade 0 loop",
 		"show scene q6 with fadeIn",
 		"k:normal OK, time for question six.",
 		"play music drumRoll with volume 10 fade 0 loop",
@@ -1290,7 +1290,7 @@ monogatari.script({
 
 	"Quiz6-Right": [
 		"stop music drumRoll",
-		"play sound rightAnswer with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q6 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:normal Many people have <i>besso</i> vacation houses in Japan.",
@@ -1340,7 +1340,7 @@ monogatari.script({
 
 	"Quiz6-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q6 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -1367,19 +1367,20 @@ monogatari.script({
 
 	Quiz7: [
 		"stop music quiz2Theme with fade 2",
-		"play music quiz1Theme with volume 30 fade 0 loop",
+		"play music quiz1Theme with volume 50 fade 0 loop",
 		"show scene q7 with fadeIn",
 		"k:normal OK, time for question seven.",
 		"play music drumRoll with volume 10 fade 0 loop",
 		"k:normal This was a cold storage place.",
 		"k:normal They used it to keep silkworm cocoons cold.",
 		"k:normal Cold silkworm cocoons don't hatch and become silkworm moths, so they can be sold or saved for next year.",
-		"k:normal Where did they bring ice from to keep the silkworms cool?",
+		"k:normal They put ice in this cold storage to keep it cold.",
+		"k:normal Where did this ice come from?",
 
 		{
 			Choice: {
 				Dialog:
-					"k:normal What kind of berries can you see at the Tajima Yahei Sericulture Farm?",
+					"k:normal Where did they bring ice from to keep the silkworms cool?",
 
 				1: {
 					Text: "They brought ice from Tokyo.",
@@ -1399,8 +1400,8 @@ monogatari.script({
 
 	"Quiz7-Right": [
 		"stop music drumRoll",
-		"play sound drumRollEnd with volume 15",
-		"play sound rightAnswer with volume 30",
+		"play sound drumRollEnd with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q7 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:normal There are many other buildings you can see at the Tajima Yahei Sericulture Farm.",
@@ -1449,7 +1450,7 @@ monogatari.script({
 
 	"Quiz7-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q7 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -1476,7 +1477,7 @@ monogatari.script({
 
 	Quiz8: [
 		"stop music quiz1Theme with fade 2",
-		"play music quiz2Theme with volume 30 fade 0 loop",
+		"play music quiz2Theme with volume 50 fade 0 loop",
 		"show scene q8 with fadeIn",
 		"k:normal OK, time for question eight.",
 		"play music drumRoll with volume 10 fade 0 loop",
@@ -1509,7 +1510,7 @@ monogatari.script({
 
 	"Quiz8-Right": [
 		"stop music drumRoll",
-		"play sound rightAnswer with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q8 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:normal The Tonegawa River was very useful. It was one part of the <i>Jobu</i> silk road.",
@@ -1557,7 +1558,7 @@ monogatari.script({
 
 	"Quiz8-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q8 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -1584,12 +1585,12 @@ monogatari.script({
 
 	Quiz9: [
 		"stop music quiz2Theme with fade 2",
-		"play music quiz1Theme with volume 30 fade 0 loop",
+		"play music quiz1Theme with volume 50 fade 0 loop",
 		"show scene q9 with fadeIn",
 		"k:normal OK, time for question nine.",
 		"play music drumRoll with volume 10 fade 0 loop",
 		"k:normal This is Tajima Yahei’s house.",
-		"k:normal It's called the Tajima Yahei Former Residence (<i>Tajima Yahei Kyuutaku</i>).",
+		"k:normal It's called the Tajima Yahei Former Residence (<i>Tajima Yahei Kyutaku</i>).",
 		"k:normal It's usually closed because the Tajima family still lives there.",
 		"k:normal But sometimes you can go inside.",
 		"k:normal When can you go inside to see the first floor?",
@@ -1617,7 +1618,7 @@ monogatari.script({
 
 	"Quiz9-Right": [
 		"stop music drumRoll",
-		"play sound rightAnswer with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q9 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:normal The Tajima family opens the house on one special Sunday each month.",
@@ -1666,7 +1667,7 @@ monogatari.script({
 
 	"Quiz9-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q9 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -1693,7 +1694,7 @@ monogatari.script({
 
 	Quiz10: [
 		"stop music quiz1Theme with fade 2",
-		"play music quiz2Theme with volume 30 fade 0 loop",
+		"play music quiz2Theme with volume 50 fade 0 loop",
 		"show scene q9 with fadeIn",
 		"k:normal OK, time for the last question.",
 		"play music drumRoll with volume 10 fade 0 loop",
@@ -1724,7 +1725,7 @@ monogatari.script({
 
 	"Quiz10-Right": [
 		"stop music drumRoll",
-		"play sound rightAnswer with volume 30",
+		"play sound rightAnswer with volume 50",
 		"show scene q9 with fadeIn",
 		"k:great That's right! Good job!",
 
@@ -1771,7 +1772,7 @@ monogatari.script({
 
 	"Quiz10-Wrong": [
 		"stop music drumRoll",
-		"play sound wrongAnswer with volume 30",
+		"play sound wrongAnswer with volume 50",
 		"show scene q9 with fadeIn",
 		"k:normal Sorry, that's not right!",
 
@@ -1819,7 +1820,7 @@ monogatari.script({
 		"show particles universe",
 
 		"stop music quiz2Theme",
-		"play music thinkingTheme with volume 30 fade 0 loop",
+		"play music thinkingTheme with volume 50 fade 0 loop",
 		"show scene q0 with fadeIn",
 		"k:reading Now let's check your score!",
 
@@ -2016,10 +2017,11 @@ monogatari.script({
 	],
 
 	"OK-End": [
+		"play music mainTheme with volume 50 loop",
 		"k:OK You didn't get so many questions right.",
 		"k:OK But that's OK! You can always try again.",
 		"k:OK You'll learn some new things if you do!",
-
+		"stop music mainTheme",
 		{
 			Choice: {
 				Dialog: "k:OK Do you want to try again?",
@@ -2037,10 +2039,11 @@ monogatari.script({
 	],
 
 	"Good-End": [
+		"play music mainTheme with volume 50 loop",
 		"k:good You got a lot of questions right!",
 		"k:good Do you want to try again and get a perfect score?",
 		"k:good You might learn some new things if you do!",
-
+		"stop music mainTheme",
 		{
 			Choice: {
 				Dialog: "k:good Do you want to try again?",
@@ -2058,29 +2061,59 @@ monogatari.script({
 	],
 
 	"Perfect-End": [
+		"play music mainTheme with volume 50 loop",
 		"k:great You got everything right!",
 		"k:great You sure know a lot about the Tajima Yahei Sericulture Farm!",
 		"k:great Thanks for playing our game!",
 		"k:great Why don't you tell us at <i>Impress</i> about your score?",
-
+		"stop music mainTheme",
 		"show message GoodEnd",
 
 		"end",
 	],
 
 	"Quiz-Stop": [
-		"k:sorry You really don't want to play our game?",
+		"k:sorry Really?",
+
+		// Initialize Quiz Knowledge Points
+		{
+			Function: {
+				Apply: () => {
+					const {
+						inventory: { knowledge, unknownKnowledge },
+					} = monogatari.storage("stats");
+					monogatari.storage({
+						stats: {
+							inventory: {
+								knowledge: 0,
+								unknownKnowledge: 10,
+							},
+						},
+						microscopePoint: false,
+						shibusawaPoint: false,
+						berryPoint: false,
+						medalPoint: false,
+						buheiPoint: false,
+						bessoPoint: false,
+						storagePoint: false,
+						riverPoint: false,
+						housePoint: false,
+						farmPoint: false,
+					});
+				},
+			},
+		},
 
 		{
 			Choice: {
-				Dialog: "k:sorry Do you want to try the quiz?",
+				Dialog: "k:sorry Come on, let's try the quiz!",
 
 				Yes: {
-					Text: "Yes",
+					Text: "OK!",
 					Do: "jump Quiz1",
 				},
 				No: {
-					Text: "No",
+					Text: "No, thanks.",
 					Do: "jump No-End",
 				},
 			},
