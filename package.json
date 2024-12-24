@@ -51,7 +51,7 @@
     "electron": "^33.2.0",
     "electron-builder": "^25.1.8",
     "electron-notarize": "^1.2.2",
-    "http-server": "^0.12.3",
+    "http-server": "^14.1.1",
     "parcel": "^2.13.3"
   }
 }
