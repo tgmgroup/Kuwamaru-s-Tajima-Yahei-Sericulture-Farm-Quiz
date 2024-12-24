@@ -10,23 +10,14 @@ monogatari.action("message").messages({
 			<p style="text-align: center"><a href='https://monogatari.io/demo/'>Demo</a> - A simple Demo.</p>
 		`,
 	},
-	BadEnd: {
-		title: "Bad Ending",
-		subtitle: "Something bad happened to you.",
-		body: `
-			<p style="text-align: center">Why don't you start again and try to find the good ending?</p>
-			<p style="text-align: center">Click the link below:</p>
-			<p style="text-align: center"><a href='index.html'>Start Again</a></p>
-		`,
-	},
 	GoodEnd: {
-		title: "Good Ending",
-		subtitle: "You finished the game!",
+		title: "You finished the game and got a perfect score!",
 		body: `
-			<p style="text-align: center">Congratulations!</p>
-			<p style="text-align: center">Thanks for playing the game and learning about the Tajima Yahei Sericulture Farm.</p>
-			<p style="text-align: center">If you want to play again, click the link below!</p>
-			<p><a href='index.html'>Start Again</a></p>
+			<p style="text-align: center; font-size: 85%"><b>Congratulations!</b></p>
+			<p style="text-align: center; font-size: 80%">Thanks for playing the game and learning about the Tajima Yahei Sericulture Farm. Why don't you let us know about your perfect score? Or if you have any comments about the game, let us know!</p>
+			<p style="text-align: center; font-size: 70%"><a href='https://sites.google.com/isesaki-school.ed.jp/impress/contact'><b>Contact Us</b></a></p>
+			<p style="text-align: center; font-size: 80%">If you want to play again, click the link below!</p>
+			<p style="text-align: center; font-size: 70%"><a href='index.html'><b>Start Again</b></a></p>
 		`,
 	},
 });
@@ -629,7 +620,15 @@ monogatari.characters({
 		},
 		expressions: {
 			normal: "tatii.png",
-			running: "kuwamaru_hashiru.png",
+			sorry: "ayamaru.png",
+			good: "kuwamaru_jisin.png",
+			great: "kuwamaru_gokigen.png",
+			learning: "kyouiku.png",
+			silkworm: "mayukara.png",
+			mulberry: "mulberry.png",
+			reading: "dokusho1.png",
+			OK: "kuwamaru_tereru.png",
+			go: "matoi.png",
 		},
 	},
 });
@@ -667,9 +666,9 @@ monogatari.script({
 
 		"hide particles",
 
-		"k:normal Hi! Welcome to our quiz!",
-		"k:normal Today, we're going to quiz you about the Tajima Yahei Sericulture Farm.",
-		"k:normal There are just 10 questions.",
+		"k:reading Hi! Welcome to our quiz!",
+		"k:reading Today, we're going to quiz you about the Tajima Yahei Sericulture Farm.",
+		"k:reading There are just 10 questions.",
 
 		"jump Quiz-Start",
 	],
@@ -679,7 +678,7 @@ monogatari.script({
 
 		{
 			Choice: {
-				Dialog: "k:normal Are you ready for the quiz? ",
+				Dialog: "k:reading Are you ready for the quiz? ",
 
 				Yes: {
 					Text: "Yes, let's start the quiz!",
@@ -731,10 +730,9 @@ monogatari.script({
 		"play sound drumRollEnd with volume 15",
 		"play sound rightAnswer with volume 30",
 		"show scene q1 with fadeIn",
-		"k:normal That's right! Good job!",
-		"k:normal Tajima Yahei learned about silkworms in Italy.",
-		"k:normal He took the microscope home and used it to study silkworms in Japan.",
-		"k:normal Let's go to the next question.",
+		"k:great That's right! Good job!",
+		"k:silkworm Tajima Yahei learned about silkworms in Italy.",
+		"k:silkworm He took the microscope home and used it to study silkworms in Japan.",
 
 		// Add a knowledge point
 		{
@@ -760,23 +758,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz2",
 	],
 
@@ -785,29 +780,25 @@ monogatari.script({
 		"play sound wrongAnswer with volume 30",
 		"show scene q1 with fadeIn",
 		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz2",
 	],
 
@@ -845,10 +836,9 @@ monogatari.script({
 		"stop music drumRoll",
 		"play sound rightAnswer with volume 30",
 		"show scene q2 with fadeIn",
-		"k:normal That's right! Good job!",
+		"k:great That's right! Good job!",
 		"k:normal Shibusawa Eiichi's cousin Shige was the wife of Tajima Buhei, who is from the same Tajima family as Tajima Yahei.",
 		"k:normal In fact, Tajima Buhei's house is right next to Tajima Yahei's house!",
-		"k:normal Let's go to the next question.",
 
 		// Add a knowledge point
 		{
@@ -874,23 +864,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz3",
 	],
 
@@ -899,29 +886,25 @@ monogatari.script({
 		"play sound wrongAnswer with volume 30",
 		"show scene q2 with fadeIn",
 		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz3",
 	],
 
@@ -931,13 +914,13 @@ monogatari.script({
 		"show scene q3 with fadeIn",
 		"k:normal OK, time for question three.",
 		"play music drumRoll with volume 10 fade 0 loop",
-		"k:normal You can see many berries on the farm.",
-		"k:normal Which berries can you see?",
+		"k:mulberry You can see many berries on the farm.",
+		"k:mulberry Which berries can you see?",
 
 		{
 			Choice: {
 				Dialog:
-					"k:normal What kind of berries can you see at the Tajima Yahei Sericulture Farm?",
+					"k:mulberry What kind of berries can you see at the Tajima Yahei Sericulture Farm?",
 
 				1: {
 					Text: "You can see strawberries.",
@@ -960,11 +943,10 @@ monogatari.script({
 		"play sound drumRollEnd with volume 15",
 		"play sound rightAnswer with volume 30",
 		"show scene q3 with fadeIn",
-		"k:normal That's right! Good job!",
-		"k:normal Silkworms love to eat mulberry leaves.",
-		"k:normal There's also an English song that you might know, <i>Here We Go Round The Mulberry Bush</i>.",
-		"k:normal Check it out sometime!",
-		"k:normal Let's go to the next question.",
+		"k:silkworm That's right! Good job!",
+		"k:silkworm Silkworms love to eat mulberry leaves.",
+		"k:silkworm There's also an English song that you might know, <i>Here We Go Round The Mulberry Bush</i>.",
+		"k:matoi Check it out sometime!",
 
 		// Add a knowledge point
 		{
@@ -990,23 +972,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz4",
 	],
 
@@ -1014,30 +993,26 @@ monogatari.script({
 		"stop music drumRoll",
 		"play sound wrongAnswer with volume 30",
 		"show scene q3 with fadeIn",
-		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
+		"k:silkworm Sorry, that's not right!",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz4",
 	],
 
@@ -1077,9 +1052,8 @@ monogatari.script({
 		"stop music drumRoll",
 		"play sound rightAnswer with volume 30",
 		"show scene q4 with fadeIn",
-		"k:normal That's right! Good job!",
+		"k:great That's right! Good job!",
 		"k:normal If you look at the medals, they say 'Paris' on them.",
-		"k:normal Let's go to the next question.",
 
 		// Add a knowledge point
 		{
@@ -1105,23 +1079,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz5",
 	],
 
@@ -1130,29 +1101,25 @@ monogatari.script({
 		"play sound wrongAnswer with volume 30",
 		"show scene q4 with fadeIn",
 		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz5",
 	],
 
@@ -1191,10 +1158,9 @@ monogatari.script({
 		"play sound drumRollEnd with volume 15",
 		"play sound rightAnswer with volume 30",
 		"show scene q5 with fadeIn",
-		"k:normal That's right! Good job!",
+		"k:great That's right! Good job!",
 		"k:normal Tajima Buhei's house is called the <i>Somakan</i>.",
 		"k:normal There is a museum inside it, too!",
-		"k:normal Let's go to the next question.",
 
 		// Add a knowledge point
 		{
@@ -1220,23 +1186,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz6",
 	],
 
@@ -1245,29 +1208,25 @@ monogatari.script({
 		"play sound wrongAnswer with volume 30",
 		"show scene q5 with fadeIn",
 		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz6",
 	],
 
@@ -1305,11 +1264,10 @@ monogatari.script({
 		"stop music drumRoll",
 		"play sound rightAnswer with volume 30",
 		"show scene q6 with fadeIn",
-		"k:normal That's right! Good job!",
+		"k:great That's right! Good job!",
 		"k:normal Many people have <i>besso</i> vacation houses in Japan.",
 		"k:normal You can see a lot of them in Karuizawa, Nagano. People use them in the winter when they go skiing or in the summer when they want to escape the heat.",
 		"k:normal But the <i>besso</i> at the Tajima Yahei Sericulture Farm was used for work.",
-		"k:normal Let's go to the next question.",
 
 		// Add a knowledge point
 		{
@@ -1335,23 +1293,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz7",
 	],
 
@@ -1360,29 +1315,25 @@ monogatari.script({
 		"play sound wrongAnswer with volume 30",
 		"show scene q6 with fadeIn",
 		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz7",
 	],
 
@@ -1423,10 +1374,9 @@ monogatari.script({
 		"play sound drumRollEnd with volume 15",
 		"play sound rightAnswer with volume 30",
 		"show scene q7 with fadeIn",
-		"k:normal That's right! Good job!",
+		"k:great That's right! Good job!",
 		"k:normal There are many other buildings you can see at the Tajima Yahei Sericulture Farm.",
-		"k:normal Why don't you go see them sometime?.",
-		"k:normal Let's go to the next question.",
+		"k:matoi Why don't you go see them sometime?",
 
 		// Add a knowledge point
 		{
@@ -1452,23 +1402,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz8",
 	],
 
@@ -1477,29 +1424,25 @@ monogatari.script({
 		"play sound wrongAnswer with volume 30",
 		"show scene q7 with fadeIn",
 		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz8",
 	],
 
@@ -1540,9 +1483,8 @@ monogatari.script({
 		"stop music drumRoll",
 		"play sound rightAnswer with volume 30",
 		"show scene q8 with fadeIn",
-		"k:normal That's right! Good job!",
+		"k:great That's right! Good job!",
 		"k:normal The Tonegawa River was very useful. It was one part of the <i>Jobu</i> silk road.",
-		"k:normal Let's go to the next question.",
 
 		// Add a knowledge point
 		{
@@ -1568,23 +1510,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz9",
 	],
 
@@ -1593,29 +1532,25 @@ monogatari.script({
 		"play sound wrongAnswer with volume 30",
 		"show scene q8 with fadeIn",
 		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz9",
 	],
 
@@ -1626,7 +1561,7 @@ monogatari.script({
 		"k:normal OK, time for question nine.",
 		"play music drumRoll with volume 10 fade 0 loop",
 		"k:normal This is Tajima Yahei’s house.",
-		"k:normal It's called the Tajima Yahei Former Residence (<i>tajima yahei kyuutaku</i>).",
+		"k:normal It's called the Tajima Yahei Former Residence (<i>Tajima Yahei Kyuutaku</i>).",
 		"k:normal It's usually closed because the Tajima family still lives there.",
 		"k:normal But sometimes you can go inside.",
 		"k:normal When can you go inside to see the first floor?",
@@ -1656,10 +1591,9 @@ monogatari.script({
 		"stop music drumRoll",
 		"play sound rightAnswer with volume 30",
 		"show scene q9 with fadeIn",
-		"k:normal That's right! Good job!",
+		"k:great That's right! Good job!",
 		"k:normal The Tajima family opens the house on one special Sunday each month.",
 		"k:normal You can see some of Tajima Yahei's special tools inside.",
-		"k:normal Let's go to the next question.",
 
 		// Add a knowledge point
 		{
@@ -1685,23 +1619,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz10",
 	],
 
@@ -1710,33 +1641,29 @@ monogatari.script({
 		"play sound wrongAnswer with volume 30",
 		"show scene q9 with fadeIn",
 		"k:normal Sorry, that's not right!",
-		"k:normal Let's go to the next question.",
 
 		// Display progress
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal Let's go to the next question.",
 		"jump Quiz10",
 	],
 
-	"Quiz10": [
+	Quiz10: [
 		"stop music quiz1Theme with fade 2",
 		"play music quiz2Theme with volume 30 fade 0 loop",
 		"show scene q9 with fadeIn",
@@ -1771,9 +1698,7 @@ monogatari.script({
 		"stop music drumRoll",
 		"play sound rightAnswer with volume 30",
 		"show scene q9 with fadeIn",
-		"k:normal That's right! Good job!",
-
-		"k:normal That was the last question.",
+		"k:great That's right! Good job!",
 
 		// Add a knowledge point
 		{
@@ -1799,23 +1724,20 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal That was the last question.",
 		"jump Quiz-End",
 	],
 
@@ -1831,36 +1753,21 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
+					if (this.storage().stats.inventory.knowledge == 1) {
 						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
 					} else {
 						return "NotSingle";
 					}
 				},
 				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} question right so far.",
 				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
+					"k:learning You got {{stats.inventory.knowledge}} questions right so far.",
 			},
 		},
 
+		"k:normal That was the last question.",
 		"jump Quiz-End",
-	],
-
-	"Quiz-Stop": [
-		{
-			Conditional: {
-				Condition: function () {
-					return this.storage("videoPoints");
-				},
-				True: "jump Welcome-Center-2-Video-Repeated",
-				False: "jump Welcome-Center-2-Video",
-			},
-		},
 	],
 
 	"Quiz-End": [
@@ -1886,43 +1793,22 @@ monogatari.script({
 		"stop music quiz2Theme",
 		"play music thinkingTheme with volume 30 fade 0 loop",
 		"show scene q0 with fadeIn",
-		"k:normal Now let's check your score!",
-
-		// Display progress
-		{
-			Conditional: {
-				Condition: function () {
-					if (this.storage.stats.inventory("knowledge") == 1) {
-						return "Single";
-					} else if (this.storage.stats.inventory("knowledge") == 0) {
-						return "Zero";
-					} else {
-						return "NotSingle";
-					}
-				},
-				Single:
-					"k:normal You got {{stats.inventory.knowledge}} question right so far.",
-				NotSingle:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-				Zero:
-					"k:normal You got {{stats.inventory.knowledge}} questions right so far.",
-			},
-		},
+		"k:reading Now let's check your score!",
 
 		// Check Q1
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("microscopePoint") == true) {
+					if (this.storage().microscopePoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that Tajima Yahei's microscope was from Italy.",
+					"k:reading You were right that Tajima Yahei's microscope was from Italy.",
 				Incorrect:
-					"k:normal You didn't know that Tajima Yahei's microscope was from Italy.",
+					"k:reading You didn't know that Tajima Yahei's microscope was from Italy.",
 			},
 		},
 
@@ -1930,16 +1816,16 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("shibusawaPoint") == true) {
+					if (this.storage().shibusawaPoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that Shibusawa Eiichi is on the 10,000 yen bill (or 10,000 yen note).",
+					"k:reading You were right that Shibusawa Eiichi is on the 10,000 yen bill (or 10,000 yen note).",
 				Incorrect:
-					"k:normal You didn't know that Shibusawa Eiichi is on the 10,000 yen bill (or 10,000 yen note).",
+					"k:reading You didn't know that Shibusawa Eiichi is on the 10,000 yen bill (or 10,000 yen note).",
 			},
 		},
 
@@ -1947,16 +1833,16 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("berryPoint") == true) {
+					if (this.storage().berryPoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that you can see mulberries at the Tajima Yahei Sericulture Farm.",
+					"k:reading You were right that you can see mulberries at the Tajima Yahei Sericulture Farm.",
 				Incorrect:
-					"k:normal You didn't know that you can see mulberries at the Tajima Yahei Sericulture Farm.",
+					"k:reading You didn't know that you can see mulberries at the Tajima Yahei Sericulture Farm.",
 			},
 		},
 
@@ -1964,16 +1850,16 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("medalPoint") == true) {
+					if (this.storage().medalPoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that Tajima Yahei got medals from Paris.",
+					"k:reading You were right that Tajima Yahei got medals from Paris.",
 				Incorrect:
-					"k:normal You didn't know that Tajima Yahei got medals from Paris.",
+					"k:reading You didn't know that Tajima Yahei got medals from Paris.",
 			},
 		},
 
@@ -1981,16 +1867,16 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("buheiPoint") == true) {
+					if (this.storage().buheiPoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that Tajima Buhei's <i>Somakan</i> was built in 1863.",
+					"k:reading You were right that Tajima Buhei's <i>Somakan</i> was built in 1863.",
 				Incorrect:
-					"k:normal You didn't know that Tajima Buhei's <i>Somakan</i> was built in 1863.",
+					"k:reading You didn't know that Tajima Buhei's <i>Somakan</i> was built in 1863.",
 			},
 		},
 
@@ -1998,16 +1884,16 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("bessoPoint") == true) {
+					if (this.storage().bessoPoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					'k:normal You were right that <i>besso</i> means "vacation house."',
+					'k:reading You were right that <i>besso</i> means "vacation house."',
 				Incorrect:
-					'k:normal You didn\'t know <i>besso</i> means "vacation house."',
+					'k:reading You didn\'t know <i>besso</i> means "vacation house."',
 			},
 		},
 
@@ -2015,16 +1901,16 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("storagePoint") == true) {
+					if (this.storage().storagePoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that ice for keeping silkworms cool came from Karuizawa.",
+					"k:reading You were right that ice for keeping silkworms cool came from Karuizawa.",
 				Incorrect:
-					"k:normal You didn't know that ice for keeping silkworms cool came from Karuizawa.",
+					"k:reading You didn't know that ice for keeping silkworms cool came from Karuizawa.",
 			},
 		},
 
@@ -2032,16 +1918,16 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("riverPoint") == true) {
+					if (this.storage().riverPoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that the Tonegawa River flooded the Tajima Yahei Sericulture Farm.",
+					"k:reading You were right that the Tonegawa River flooded the Tajima Yahei Sericulture Farm.",
 				Incorrect:
-					"k:normal You didn't know that the Tonegawa River flooded the Tajima Yahei Sericulture Farm.",
+					"k:reading You didn't know that the Tonegawa River flooded the Tajima Yahei Sericulture Farm.",
 			},
 		},
 
@@ -2049,16 +1935,16 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("housePoint") == true) {
+					if (this.storage().housePoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that you can see the first floor of the Tajima Yahei Former Residence on special Sundays.",
+					"k:reading You were right that you can see the first floor of the Tajima Yahei Former Residence on special Sundays.",
 				Incorrect:
-					"k:normal You didn't know that you can see the first floor of the Tajima Yahei Former Residence on special Sundays.",
+					"k:reading You didn't know that you can see the first floor of the Tajima Yahei Former Residence on special Sundays.",
 			},
 		},
 
@@ -2066,20 +1952,115 @@ monogatari.script({
 		{
 			Conditional: {
 				Condition: function () {
-					if (this.storage.stats.inventory("farmPoint") == true) {
+					if (this.storage().farmPoint == true) {
 						return "Correct";
 					} else {
 						return "Incorrect";
 					}
 				},
 				Correct:
-					"k:normal You were right that about 100 people worked at the Tajima Yahei Sericulture Farm at its peak.",
+					"k:reading You were right that about 100 people worked at the Tajima Yahei Sericulture Farm at its peak.",
 				Incorrect:
-					"k:normal You didn't know that about 100 people worked at the Tajima Yahei Sericulture Farm at its peak.",
+					"k:reading You didn't know that about 100 people worked at the Tajima Yahei Sericulture Farm at its peak.",
 			},
 		},
 
+		// Check progress
+		{
+			Conditional: {
+				Condition: function () {
+					if (this.storage().stats.inventory.knowledge < 5) {
+						return "OK";
+					} else if (this.storage().stats.inventory.knowledge < 10) {
+						return "Good";
+					} else {
+						return "Perfect";
+					}
+				},
+				OK: "jump OK-End",
+				Good: "jump Good-End",
+
+				Perfect: "jump Perfect-End",
+			},
+		},
+	],
+
+	"OK-End": [
+		"k:OK You didn't get so many questions right.",
+		"k:OK But that's OK! You can always try again.",
+		"k:OK You'll learn some new things if you do!",
+
+		{
+			Choice: {
+				Dialog: "k:OK Do you want to try again?",
+
+				Yes: {
+					Text: "Yes",
+					Do: "jump Quiz-Start",
+				},
+				No: {
+					Text: "No",
+					Do: "jump Quiz-Stop",
+				},
+			},
+		},
+	],
+
+	"Good-End": [
+		"k:good You got a lot of questions right!",
+		"k:good Do you want to try again and get a perfect score?",
+		"k:good You might learn some new things if you do!",
+
+		{
+			Choice: {
+				Dialog: "k:good Do you want to try again?",
+
+				Yes: {
+					Text: "Yes",
+					Do: "jump Quiz-Start",
+				},
+				No: {
+					Text: "No",
+					Do: "jump Quiz-Stop",
+				},
+			},
+		},
+	],
+
+	"Perfect-End": [
+		"k:great You got everything right!",
+		"k:great You sure know a lot about the Tajima Yahei Sericulture Farm!",
+		"k:great Thanks for playing our game!",
+		"k:great Why don't you tell us at <i>Impress</i> about your score?",
+
 		"show message GoodEnd",
+
+		"end",
+	],
+
+	"Quiz-Stop": [
+		"k:sorry You really don't want to play our game?",
+
+		{
+			Choice: {
+				Dialog: "k:sorry Do you want to try the quiz?",
+
+				Yes: {
+					Text: "Yes",
+					Do: "jump Quiz1",
+				},
+				No: {
+					Text: "No",
+					Do: "jump No-End",
+				},
+			},
+		},
+			],
+
+	"No-End": [
+		"k:sorry OK, well, see you sometime again!",
+		"k:matoi Please visit the Tajima Yahei Sericulture Farm sometime!",
+		"k:sorry Thanks for playing our game!",
 
 		"end",
 	],
