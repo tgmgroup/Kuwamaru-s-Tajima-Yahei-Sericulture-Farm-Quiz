@@ -582,7 +582,7 @@ monogatari.assets("images", {});
 // Define the backgrounds for each scene.
 monogatari.assets("scenes", {
 	// Start
-	q0: "0-start.JPG",
+	q0: "0-start.jpg",
 	q1: "1-microscope.JPG",
 	q2: "2-shibusawa.JPG",
 	q3: "3-mulberries.JPG",
@@ -946,7 +946,7 @@ monogatari.script({
 		"k:silkworm That's right! Good job!",
 		"k:silkworm Silkworms love to eat mulberry leaves.",
 		"k:silkworm There's also an English song that you might know, <i>Here We Go Round The Mulberry Bush</i>.",
-		"k:matoi Check it out sometime!",
+		"k:go Check it out sometime!",
 
 		// Add a knowledge point
 		{
@@ -1376,7 +1376,7 @@ monogatari.script({
 		"show scene q7 with fadeIn",
 		"k:great That's right! Good job!",
 		"k:normal There are many other buildings you can see at the Tajima Yahei Sericulture Farm.",
-		"k:matoi Why don't you go see them sometime?",
+		"k:go Why don't you go see them sometime?",
 
 		// Add a knowledge point
 		{
@@ -2059,8 +2059,8 @@ monogatari.script({
 
 	"No-End": [
 		"k:sorry OK, well, see you sometime again!",
-		"k:matoi Please visit the Tajima Yahei Sericulture Farm sometime!",
-		"k:sorry Thanks for playing our game!",
+		"k:go Please visit the Tajima Yahei Sericulture Farm sometime!",
+		"k:normal Thanks for playing our game!",
 
 		"end",
 	],
