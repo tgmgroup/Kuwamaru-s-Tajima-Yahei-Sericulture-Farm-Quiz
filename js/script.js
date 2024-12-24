@@ -676,6 +676,35 @@ monogatari.script({
 	"Quiz-Start": [
 		"show scene s0 with fadeIn",
 
+		// Initialize Quiz Knowledge Points
+		{
+			Function: {
+				Apply: () => {
+					const {
+						inventory: { knowledge, unknownKnowledge },
+					} = monogatari.storage("stats");
+					monogatari.storage({
+						stats: {
+							inventory: {
+								knowledge: 0,
+								unknownKnowledge: 10,
+							},
+						},
+						microscopePoint: false,
+						shibusawaPoint: false,
+						berryPoint: false,
+						medalPoint: false,
+						buheiPoint: false,
+						bessoPoint: false,
+						storagePoint: false,
+						riverPoint: false,
+						housePoint: false,
+						farmPoint: false,
+					});
+				},
+			},
+		},
+
 		{
 			Choice: {
 				Dialog: "k:reading Are you ready for the quiz? ",
@@ -1129,7 +1158,7 @@ monogatari.script({
 		"show scene q5 with fadeIn",
 		"k:normal OK, time for question five.",
 		"play music drumRoll with volume 10 fade 0 loop",
-		"k:normal This is Tajima Yahei's house.",
+		"k:normal This is Tajima Buhei's house.",
 		"k:normal You can see it right next to Tajima Yahei's house.",
 		"k:normal When was it built?",
 
@@ -2055,7 +2084,7 @@ monogatari.script({
 				},
 			},
 		},
-			],
+	],
 
 	"No-End": [
 		"k:sorry OK, well, see you sometime again!",
