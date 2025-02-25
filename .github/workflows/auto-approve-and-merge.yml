@@ -1,0 +1,40 @@
+name: Auto Approve and Merge Pull Requests
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  auto-approve-and-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Auto approve pull request
+        uses: peter-evans/approve-pull-request@v3
+        with:
+          # Approve pull requests authored by dependabot[bot] or tgmgroup
+          pull-request-author: 'dependabot[bot], tgmgroup'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge pull request
+        if: github.actor == 'dependabot[bot]' || github.actor == 'tgmgroup'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo, number } = context.issue;
+            const pr = await github.pulls.get({
+              owner,
+              repo,
+              pull_number: number
+            });
+            if (pr.data.state === 'open') {
+              await github.pulls.merge({
+                owner,
+                repo,
+                pull_number: number,
+                merge_method: 'squash'
+              });
+            }
