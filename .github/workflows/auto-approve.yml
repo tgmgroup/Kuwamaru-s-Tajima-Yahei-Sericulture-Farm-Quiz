@@ -1,0 +1,19 @@
+name: Auto Approve Pull Requests
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Auto approve pull request
+        uses: peter-evans/approve-pull-request@v3
+        with:
+          # Approve pull requests authored by dependabot[bot] or tgmgroup
+          pull-request-author: 'dependabot[bot], tgmgroup'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
